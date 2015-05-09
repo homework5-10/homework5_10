@@ -1,0 +1,7 @@
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\obj\Debug\GetNetDataTest.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\bin\Debug\GetNetDataTest.dll
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\bin\Debug\GetNetDataTest.pdb
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\bin\Debug\GetNetData.dll
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\bin\Debug\GetNetData.pdb
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\obj\Debug\GetNetDataTest.dll
+C:\Users\user\Desktop\GetNetData\GetNetDataTest\obj\Debug\GetNetDataTest.pdb
