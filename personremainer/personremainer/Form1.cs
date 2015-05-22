@@ -126,6 +126,30 @@ namespace personremainer
                 NotDisplay();
         }
 
+        private void ToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+
+            DateTime start = new DateTime(2015,3,1);
+            int ConDay = 10;
+
+            NotDisplay();
+
+            if (false == show_StoGra)
+                show_StoGra = true;
+            else if (true == show_StoGra)
+                show_StoGra = false;
+            if (true == show_StoGra)
+            {
+
+                CalGraPer(start,ConDay);
+                Display(panel3);
+
+            }
+            else if (false == show_StoInf)
+                NotDisplay();
+
+        }
+
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             //test
@@ -250,6 +274,8 @@ namespace personremainer
                 toolStripMenuItem3.Enabled = true;
                 toolStripMenuItem4.Enabled = true;
                 toolStripMenuItem5.Enabled = true;
+                ToolStripMenuItem6.Enabled = true;
+                
 
             }
         }
@@ -454,35 +480,6 @@ namespace personremainer
 
         }
 
-        public void show_gra_listbox()
-        {
-            DataSet DS =new DataSet();
-            DataBase DB=new DataBase();
-          
-            DS = DB.ReadDB("userop", "name",0);
-            DataTable DT = DS.Tables[0];
-            StoGralistBox.DataSource = DT;
-            StoGralistBox.ValueMember = "name";
-            StoGralistBox.DisplayMember = "name";
-        }
-
-
-        private void StoGralistBox_DoubleClick(object sender, EventArgs e)
-        {
-            string stockname = StoGralistBox.SelectedValue.ToString();
-            DataBase DB = new DataBase();
-            DataSet DS = new DataSet();
-          //  DS = DB.ReadDB("stockinf", "id", "name", stockname);
-            if (DS.Tables[0].Rows.Count != 0)
-            {
-                personremainer.commo_data.stockcode = DS.Tables[0].Rows[0][0].ToString();
-            }
-
-            show_sto_gra(personremainer.commo_data.stockcode);
-            
-            
-        }
-
         public void addtastoser(string name)
         {
 
@@ -641,6 +638,7 @@ namespace personremainer
 
 
         //畫持倉圖
+        //因為要做出堆積圖 考慮改成用DATASET實現
         public void Draw_takchart(string stockcode)
         {
             //提取數據
@@ -858,18 +856,183 @@ namespace personremainer
         }
 
 
-        //計算收益率
+       //計算收益率
+        //股票收益率= 收益额 /原始投资额　其中：收益额=收回投资额+全部股利-(原始投资额+全部佣金+税款)
+        // 收益率=(當前價-買價)% 
         public DataSet CalGraPer(DateTime start,int ConDay)
         {
             //讀記錄
             //計算每天收益
             //維護 DATASET  /  DATATABLE 集合
             DataBase DB = new DataBase();
+            DataSet DS = new DataSet();
+            DataSet DBS = new DataSet();
+            DataSet GrainGraph =new DataSet("my");
             GetNetStockData GNDS = new GetNetStockData();
 
+            bool IsExist = false;
+            bool IsExistTabke = false;
+            int DSrow = 0;
 
+             DBS = DB.ReadDB("UserOp", "id",0);
+      
+             int ROWS = int.Parse(DBS.Tables[0].Rows.Count.ToString());
+             for (int row = 0; row < ROWS; row++)
+             {
+                 int holdquan = 0, quantity = 0;
+                 float GrainPer = 0, Grain = 0, InPut = 0, hisprice = 0, endprice = 0;
+
+                 DS = DB.ReadDB("userop","*", "id", DBS.Tables[0].Rows[row][0].ToString(), 1);
+                 int RCrow = DS.Tables[0].Rows.Count;
+                 string stockcode =DBS.Tables[0].Rows[row][0].ToString();
+                 int Rows = int.Parse(DS.Tables[0].Rows.Count.ToString());
+                 for (int R = 0; R < RCrow; R++)
+                 {
+                     string DATA =DS.Tables[0].Rows[R][2].ToString();
+                     DATA = DATA.Replace("/","-");
+                     quantity = int.Parse(DS.Tables[0].Rows[R][5].ToString());
+                     hisprice = float.Parse(DS.Tables[0].Rows[R][4].ToString());
+                     //未考慮休息日
+                     endprice = float.Parse(GNDS.hispri(stockcode,DATA));
+                     if (DS.Tables[0].Rows[R][3].ToString().Substring(0, 2) == "买入")
+                     {
+                         //买入
+                         InPut += quantity *  hisprice;
+                         holdquan += quantity;
+              
+                     }
+                     else if (DS.Tables[0].Rows[R][3].ToString().Substring(0, 2) == "卖出")
+                     {
+                         //卖出
+                         Grain += quantity * hisprice;
+                         InPut -= Grain;
+                         holdquan -=  quantity;
+                       
+                     }
+                /*     else if (DS.Tables[0].Rows[R][3].ToString().Substring(0, 2) == "补仓")
+                     {
+                         //补仓
+                         InPut += quantity * hisprice;
+                         Grain = (holdquan * endprice - InPut);
+                         holdquan += quantity;
+                     }
+                     else if (DS.Tables[0].Rows[R][3].ToString().Substring(0, 2) == "卖空")
+                     {
+                         //卖空 
+                         
+                         Grain += quantity * hisprice;
+                         InPut -= Grain;
+                         holdquan -= quantity;
+                     }*/
+                     if(holdquan != 0)
+                     {
+                        GrainPer = (holdquan * endprice - InPut) / holdquan*100;
+                     }
+                     else
+                     {
+                         GrainPer = 0;
+                     }
+                     //維護DS
+                     int ROW2 = GrainGraph.Tables.Count;
+                     for (int i = 0; i < ROW2; i++)
+                     {
+                         string compstockcode = GrainGraph.Tables[i].ToString();
+                         compstockcode = compstockcode.Replace(" ", "");
+                         if(stockcode == compstockcode )
+                         {
+                             IsExistTabke =true;
+                         }
+                     }
+
+                         if (IsExistTabke == false)
+                         {
+                             GrainGraph.Tables.Add(stockcode);
+                             GrainGraph.Tables[stockcode].Columns.Add("data");
+                             GrainGraph.Tables[stockcode].Columns.Add("percent");
+ 
+                         }
+                     DataRow dr = GrainGraph.Tables[stockcode].NewRow();
+                     //賦值
+                      int GGrow = GrainGraph.Tables[stockcode].Rows.Count;
+
+                     for(int ROW=0;ROW<GGrow;ROW++)
+                     {
+
+                         if( DATA == GrainGraph.Tables[stockcode].Rows[ROW][0])
+                         {
+                             IsExist = true;
+                             DSrow = ROW;
+                         }
+                     }
+                     if (IsExist == false)
+                     {
+                         dr["data"] = DATA;
+                         dr["percent"] = GrainPer;
+                         GrainGraph.Tables[stockcode].Rows.Add(dr);
+                     }
+                     else//維護
+                     {
+                      GrainGraph.Tables[stockcode].Rows[DSrow][1] =  GrainPer + float.Parse( GrainGraph.Tables[stockcode].Rows[DSrow][1].ToString());
+                     }
+                     IsExist = false;
+                 }
+                 IsExistTabke = false;
+             }
+             return GrainGraph;
+        }
+        //未測試
+        public DataSet MixDS(DataSet Input)
+        {
+            DataSet DS = Input;
+            DataSet Relut = new DataSet();
+            bool IsExist = false;
+            Relut.Tables.Add("GrainPer");
+            Relut.Tables["GrainPer"].Columns.Add("DATA");
+            Relut.Tables["GrainPer"].Columns.Add("Percent");
+            
+            int TableIndex = DS.Tables.Count;
+            for (int i = 0; i < TableIndex; i++)
+            {
+                DataRow dr = DS.Tables[i].NewRow();
+                int ROWS = DS.Tables[i].Rows.Count;
+                for (int row = 0; row < ROWS; row++)
+                {
+
+                    if (IsExist == false)
+                    {
+                        dr["DATA"] = DS.Tables[i].Rows[row][0];
+                        dr["Percent"] = DS.Tables[i].Rows[row][1];
+                        Relut.Tables["GrainPer"].Rows.Add(dr);
+                    }
+                    else
+                    {
+                        //找到同DATA +PER
+                        int NowRow = Relut.Tables["GrainPer"].Rows.Count;
+                        for (int ROW = 0; ROW < NowRow; ROW++)
+                        {
+                            if (Relut.Tables["GrainPer"].Rows[ROW][0] == DS.Tables[i].Rows[row][1])
+                            {
+                                Relut.Tables["GrainPer"].Rows[ROW][1] = float.Parse( Relut.Tables["GrainPer"].Rows[ROW][1].ToString()) + float.Parse (DS.Tables[i].Rows[row][1].ToString());
+                            }
+                        }
+
+
+                            IsExist = false;
+                    }
+                }
+
+            }
+
+
+                return Relut;
         }
 
+
+
+
+
+        
+        
     }
  }
  
