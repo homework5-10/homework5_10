@@ -10,6 +10,7 @@ using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.IO;
 namespace personremainer
 {
     class GetNetStockData
@@ -18,7 +19,9 @@ namespace personremainer
         string UrlList = "http://hq.sinajs.cn/list={0}";
         string GraphUrlList= "http://image.sinajs.cn/newchart/{0}";
         string GraphUrlEnd = ".gif";
-        string Reg = "开盘价:(?<price>[0-9]+\\.[0-9]+)";
+       // string Reg = "收盘价:(?<price>[0-9]+\\.[0-9]+)";
+      //  </td><td><h6><span style="color:#008000">
+        string Reg = "收盘价:</td><td><h6><span style=\"color:#[A-z]*[0-9]*\">(?<price>[0-9]+\\.[0-9]+)";
         public string GetNetData(string StockNum)//輸入股票編號 訪問新浪API接口 返回字股票信息(符串數據)
         {
             if (null == client)
@@ -179,15 +182,12 @@ namespace personremainer
             try
             {
                 string StockData = client.DownloadString(hisURL);
-               StockData = StockData.Replace("</td><td>", "");
                 MatchCollection MCrelust = reg.Matches(StockData);
                 string relut = MCrelust[0].Groups["price"].Value.ToString();
-
                 return relut;
             }
             catch (Exception err)
             {
-
                 return null;
             }
 

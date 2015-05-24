@@ -36,6 +36,7 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
             this.導入數據ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -80,7 +81,9 @@
             this.StoInc = new System.Windows.Forms.RichTextBox();
             this.StockDataInf = new System.Windows.Forms.RichTextBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.ToolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
+            this.StartDate = new System.Windows.Forms.DateTimePicker();
+            this.EndDate = new System.Windows.Forms.DateTimePicker();
+            this.DrawGrainChart = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -134,6 +137,14 @@
             this.toolStripMenuItem4.Text = "持倉情況";
             this.toolStripMenuItem4.Click += new System.EventHandler(this.toolStripMenuItem4_Click);
             // 
+            // ToolStripMenuItem6
+            // 
+            this.ToolStripMenuItem6.Enabled = false;
+            this.ToolStripMenuItem6.Name = "ToolStripMenuItem6";
+            this.ToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+            this.ToolStripMenuItem6.Text = "收益圖";
+            this.ToolStripMenuItem6.Click += new System.EventHandler(this.ToolStripMenuItem6_Click);
+            // 
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Enabled = false;
@@ -171,9 +182,9 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
+            this.splitContainer1.Panel2.Controls.Add(this.panel3);
             this.splitContainer1.Size = new System.Drawing.Size(966, 553);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 1;
@@ -268,6 +279,9 @@
             // 
             this.panel3.AutoScroll = true;
             this.panel3.AutoSize = true;
+            this.panel3.Controls.Add(this.DrawGrainChart);
+            this.panel3.Controls.Add(this.EndDate);
+            this.panel3.Controls.Add(this.StartDate);
             this.panel3.Controls.Add(this.StoGrachart);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
@@ -561,13 +575,29 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
-            // ToolStripMenuItem6
+            // StartDate
             // 
-            this.ToolStripMenuItem6.Enabled = false;
-            this.ToolStripMenuItem6.Name = "ToolStripMenuItem6";
-            this.ToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
-            this.ToolStripMenuItem6.Text = "收益圖";
-            this.ToolStripMenuItem6.Click += new System.EventHandler(this.ToolStripMenuItem6_Click);
+            this.StartDate.Location = new System.Drawing.Point(52, 20);
+            this.StartDate.Name = "StartDate";
+            this.StartDate.Size = new System.Drawing.Size(200, 21);
+            this.StartDate.TabIndex = 4;
+            // 
+            // EndDate
+            // 
+            this.EndDate.Location = new System.Drawing.Point(286, 20);
+            this.EndDate.Name = "EndDate";
+            this.EndDate.Size = new System.Drawing.Size(200, 21);
+            this.EndDate.TabIndex = 5;
+            // 
+            // DrawGrainChart
+            // 
+            this.DrawGrainChart.Location = new System.Drawing.Point(519, 21);
+            this.DrawGrainChart.Name = "DrawGrainChart";
+            this.DrawGrainChart.Size = new System.Drawing.Size(75, 23);
+            this.DrawGrainChart.TabIndex = 6;
+            this.DrawGrainChart.Text = "計算";
+            this.DrawGrainChart.UseVisualStyleBackColor = true;
+            this.DrawGrainChart.Click += new System.EventHandler(this.DrawGrainChart_Click);
             // 
             // Form1
             // 
@@ -688,7 +718,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem6; 
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem6;
+        private System.Windows.Forms.Button DrawGrainChart;
+        private System.Windows.Forms.DateTimePicker EndDate;
+        private System.Windows.Forms.DateTimePicker StartDate; 
 
 
 
