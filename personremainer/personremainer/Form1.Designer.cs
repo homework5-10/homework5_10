@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,8 +49,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
             this.TaStodataView = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -80,23 +78,25 @@
             this.StoDataName = new System.Windows.Forms.Label();
             this.StoInc = new System.Windows.Forms.RichTextBox();
             this.StockDataInf = new System.Windows.Forms.RichTextBox();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.StartDate = new System.Windows.Forms.DateTimePicker();
-            this.EndDate = new System.Windows.Forms.DateTimePicker();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.DrawGrainChart = new System.Windows.Forms.Button();
+            this.EndDate = new System.Windows.Forms.DateTimePicker();
+            this.StartDate = new System.Windows.Forms.DateTimePicker();
+            this.StoGrachart = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).BeginInit();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -163,6 +163,7 @@
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 25);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -182,9 +183,9 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.button1);
-            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Controls.Add(this.panel2);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Size = new System.Drawing.Size(966, 553);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 1;
@@ -275,32 +276,6 @@
             this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // panel3
-            // 
-            this.panel3.AutoScroll = true;
-            this.panel3.AutoSize = true;
-            this.panel3.Controls.Add(this.DrawGrainChart);
-            this.panel3.Controls.Add(this.EndDate);
-            this.panel3.Controls.Add(this.StartDate);
-            this.panel3.Controls.Add(this.StoGrachart);
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(933, 540);
-            this.panel3.TabIndex = 4;
-            this.panel3.Visible = false;
-            // 
-            // StoGrachart
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.StoGrachart.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.StoGrachart.Legends.Add(legend3);
-            this.StoGrachart.Location = new System.Drawing.Point(32, 64);
-            this.StoGrachart.Name = "StoGrachart";
-            this.StoGrachart.Size = new System.Drawing.Size(799, 448);
-            this.StoGrachart.TabIndex = 3;
-            this.StoGrachart.Text = "chart1";
-            // 
             // panel1
             // 
             this.panel1.AutoScroll = true;
@@ -381,10 +356,10 @@
             // 
             this.TaStochart.BackColor = System.Drawing.Color.Empty;
             this.TaStochart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            chartArea4.Name = "ChartArea1";
-            this.TaStochart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.TaStochart.Legends.Add(legend4);
+            chartArea5.Name = "ChartArea1";
+            this.TaStochart.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.TaStochart.Legends.Add(legend5);
             this.TaStochart.Location = new System.Drawing.Point(55, 211);
             this.TaStochart.Name = "TaStochart";
             this.TaStochart.Size = new System.Drawing.Size(783, 301);
@@ -570,24 +545,19 @@
             this.StockDataInf.Text = "";
             this.StockDataInf.TextChanged += new System.EventHandler(this.StockDataInf_TextChanged);
             // 
-            // openFileDialog1
+            // panel3
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // StartDate
-            // 
-            this.StartDate.Location = new System.Drawing.Point(52, 20);
-            this.StartDate.Name = "StartDate";
-            this.StartDate.Size = new System.Drawing.Size(200, 21);
-            this.StartDate.TabIndex = 4;
-            // 
-            // EndDate
-            // 
-            this.EndDate.Location = new System.Drawing.Point(286, 20);
-            this.EndDate.Name = "EndDate";
-            this.EndDate.Size = new System.Drawing.Size(200, 21);
-            this.EndDate.TabIndex = 5;
+            this.panel3.AutoScroll = true;
+            this.panel3.AutoSize = true;
+            this.panel3.Controls.Add(this.DrawGrainChart);
+            this.panel3.Controls.Add(this.EndDate);
+            this.panel3.Controls.Add(this.StartDate);
+            this.panel3.Controls.Add(this.StoGrachart);
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(933, 540);
+            this.panel3.TabIndex = 4;
+            this.panel3.Visible = false;
             // 
             // DrawGrainChart
             // 
@@ -598,6 +568,37 @@
             this.DrawGrainChart.Text = "計算";
             this.DrawGrainChart.UseVisualStyleBackColor = true;
             this.DrawGrainChart.Click += new System.EventHandler(this.DrawGrainChart_Click);
+            // 
+            // EndDate
+            // 
+            this.EndDate.Location = new System.Drawing.Point(286, 20);
+            this.EndDate.Name = "EndDate";
+            this.EndDate.Size = new System.Drawing.Size(200, 21);
+            this.EndDate.TabIndex = 5;
+            // 
+            // StartDate
+            // 
+            this.StartDate.Location = new System.Drawing.Point(52, 20);
+            this.StartDate.Name = "StartDate";
+            this.StartDate.Size = new System.Drawing.Size(200, 21);
+            this.StartDate.TabIndex = 4;
+            // 
+            // StoGrachart
+            // 
+            chartArea6.Name = "ChartArea1";
+            this.StoGrachart.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.StoGrachart.Legends.Add(legend6);
+            this.StoGrachart.Location = new System.Drawing.Point(32, 64);
+            this.StoGrachart.Name = "StoGrachart";
+            this.StoGrachart.Size = new System.Drawing.Size(799, 448);
+            this.StoGrachart.TabIndex = 3;
+            this.StoGrachart.Text = "chart1";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // Form1
             // 
@@ -618,8 +619,6 @@
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TaStodataView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TaStochart)).EndInit();
@@ -627,6 +626,8 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.KLineGraph)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.stockdataView)).EndInit();
+            this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.StoGrachart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

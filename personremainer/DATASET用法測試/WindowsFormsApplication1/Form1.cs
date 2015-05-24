@@ -36,6 +36,7 @@ namespace WindowsFormsApplication1
             DS.Tables["my1"].Columns.Add("UserName");
             DS.Tables["my1"].Columns.Add("ReMark",typeof(DateTime));
             DS.Tables["my1"].Columns.Add("Comment");
+            MessageBox.Show(DS.Tables[0].Rows.Count.ToString());
             DataRow dr = DS.Tables["my1"].NewRow();
 
             dr["UserName"] = "周讯";

@@ -44,10 +44,13 @@ namespace personremainer
             if (true == show_PerFor)
             {
                 splitContainer1.SplitterDistance = 200;
+                CalPerData();
+                
             }
             else if (false == show_PerFor)
                 splitContainer1.SplitterDistance = 0;
         }
+
 
 
 
@@ -79,11 +82,8 @@ namespace personremainer
                 {
                     TaStochart.Series.Clear();
                 }
-
-
                 DataSet DS = new DataSet();
                 DataBase DB = new DataBase();
-
                 DS = DB.ReadDB("userop", "id", 0);
                 int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
                 for (int row = 0; row < ROWS; row++)
@@ -91,7 +91,6 @@ namespace personremainer
                     show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 1);
                     Draw_takchart(DS.Tables[0].Rows[row][0].ToString());
                 }
-
                 //顯示準備完後 顯示
                 Display(panel1);
             }
@@ -301,6 +300,17 @@ namespace personremainer
                 toolStripMenuItem5.Enabled = true;
                 ToolStripMenuItem6.Enabled = true;
 
+                //顯示默認介面
+                DataBase DB = new DataBase();
+                DS = DB.ReadDB("userop", "id", 0);
+                int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+                for (int row = 0; row < ROWS; row++)
+                {
+                    show_take_sto(DS.Tables[0].Rows[row][0].ToString(), 1);
+                    Draw_takchart(DS.Tables[0].Rows[row][0].ToString());
+                }
+                //顯示準備完後 顯示
+                Display(panel1);
 
             }
         }
@@ -512,6 +522,7 @@ namespace personremainer
 
             TaStochart.Series.Add(name);
             TaStochart.Series[name].BorderWidth = 3;
+          //  TaStochart.Series[name].ChartType = SeriesChartType.StackedArea;
             TaStochart.Series[name].ChartType = SeriesChartType.Line;
             TaStochart.Series[name].IsValueShownAsLabel = false;//是否顯示點的值
             TaStochart.Series[name].XValueType = ChartValueType.Date;
@@ -661,32 +672,45 @@ namespace personremainer
             }
         }
 
-
+/*
         //畫持倉圖
         //因為要做出堆積圖 考慮改成用DATASET實現
-        public void Draw_takchart(string stockcode)
+        public void Draw_takchart()
         {
             //重做思路 
             //儲到DATASET 每個股票一個表
             //再新創一個DATASET 整合所有 股票數量 排序
             //畫圖
 
-
             //提取數據
             DataBase DB = new DataBase();
-            GetNetStockData GNSD = new GetNetStockData();
             DataSet DS = new DataSet();
-            DS = DB.ReadDB("UserOp", "*", "id", stockcode, 1);
-            string StrDate;
-            string stoname = null;
-            int holdquan = 0, quantity = 0;
-            //畫圖
-            if (DS.Tables[0].Rows.Count != 0)
-            {
-                stoname = DS.Tables[0].Rows[0][0].ToString();
-                addtastoser(stoname);
-            }
+            DataSet StockDS = new DataSet();
+            DataSet EachStock = new DataSet();
+            DataSet AllStock = new DataSet();
+            //上2DS ADD列
+            DS = DB.ReadDB("UserOp", "id", 0);//返回股票編號
             int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+
+            for (int StockIndex = 0; StockIndex < ROWS; StockIndex++)
+            {
+                string StockCode =DS.Tables[0].Rows[StockIndex][0].ToString();
+                StockDS = DB.ReadDB("UserOp", "*", "id", StockCode, 1);
+                string StockName = StockDS.Tables[0].Rows[0][0].ToString();
+                int row =  StockDS.Tables[0].Rows.Count ;
+                for(int i = 0; i < row;i++)
+                {
+                    //計量 入DS
+
+
+                }
+
+
+            }
+
+
+            string StrDate;
+            int holdquan = 0, quantity = 0;
             //因為要順序畫圖 所以由舊記錄畫起
             for (int row = 0; row < ROWS; row++)
             {
@@ -714,14 +738,110 @@ namespace personremainer
                 }
                 //畫持倉圖
 
-                if (DS.Tables[0].Rows.Count != 0)
-                {
-                    StrDate = DS.Tables[0].Rows[row][2].ToString();
-                    DateTime Date = Convert.ToDateTime(StrDate);
-                    TaStochart.Series[stoname].Points.AddXY(Date, holdquan);
-                }
+                 StrDate = DS.Tables[0].Rows[row][2].ToString();
+                 DateTime Date = Convert.ToDateTime(StrDate);
             }
+        }*/
+
+
+
+
+        //畫持倉圖
+        //因為要做出堆積圖 考慮改成用DATASET實現
+        public void Draw_takchart(string stockcode)
+        {
+            //提取數據
+            DataBase DB = new DataBase();
+            DataSet DS = new DataSet();
+            DataSet TempDS = new DataSet();
+            DS = DB.ReadDB("UserOp", "*", "id", stockcode, 1);
+            string StrDate;
+            string stoname = null;
+            int holdquan = 0, quantity = 0;
+            //畫圖
+           // if (DS.Tables[0].Rows.Count != 0)
+        //    {
+                stoname = DS.Tables[0].Rows[0][0].ToString();
+                addtastoser(stoname);
+                TempDS.Tables.Add(stoname);
+                TempDS.Tables[stoname].Columns.Add("DATA",typeof(DateTime));
+                TempDS.Tables[stoname].Columns.Add("quantity");
+                DataRow tempRow = TempDS.Tables[stoname].NewRow();
+                tempRow["DATA"] = Convert.ToDateTime("2015-3-1");
+                tempRow["quantity"] = 0;
+                TempDS.Tables[stoname].Rows.Add(tempRow);
+     //       }
+            int ROWS = int.Parse(DS.Tables[0].Rows.Count.ToString());
+            //因為要順序畫圖 所以由舊記錄畫起
+            for (int row = 0; row < ROWS; row++)
+            {
+                DataRow dr = TempDS.Tables[stoname].NewRow();
+                quantity = int.Parse(DS.Tables[0].Rows[row][5].ToString());
+                if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
+                {
+                    //买入
+                    holdquan += quantity;
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖出")
+                {
+                    //卖出
+                    holdquan = holdquan - quantity;
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "补仓")
+                {
+                    //补仓
+                    holdquan = holdquan + quantity;
+                }
+                else if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "卖空")
+                {
+                    //卖空 
+                    holdquan = holdquan - quantity;
+                }
+
+                //檢查
+                bool IsExist = false;
+                int SameRow = 0;
+                int MaxRow =TempDS.Tables[stoname].Rows.Count;
+                StrDate = DS.Tables[0].Rows[row][2].ToString();
+                DateTime CheckDate = Convert.ToDateTime(StrDate);
+                for (int CheckRow = 0; CheckRow < MaxRow; CheckRow++)
+                {
+
+                    if( CheckDate ==  Convert.ToDateTime(TempDS.Tables[stoname].Rows[CheckRow][0].ToString()))
+                    {
+                        IsExist =true;
+                        SameRow = CheckRow;
+              
+                    }
+                }
+
+                    if (IsExist == true)
+                    {
+                        TempDS.Tables[stoname].Rows[SameRow][0] = TempDS.Tables[stoname].Rows[SameRow][0];
+                        TempDS.Tables[stoname].Rows[SameRow][1] = holdquan;
+                        IsExist = false;
+                    }
+                    else if(IsExist ==false)
+                    {
+                        dr["DATA"] = Convert.ToDateTime(StrDate);
+                        dr["quantity"] = holdquan;
+                        TempDS.Tables[stoname].Rows.Add(dr);
+                    }
+            }
+            //畫持倉圖
+            int TempIndex = TempDS.Tables[stoname].Rows.Count;
+            for (int Trow = 0; Trow < TempIndex; Trow++)
+            {
+                StrDate = TempDS.Tables[stoname].Rows[Trow][0].ToString();
+                int HoldQuan = int.Parse(TempDS.Tables[stoname].Rows[Trow][1].ToString());
+                StrDate = StrDate.Replace("/","-");
+                DateTime Date = Convert.ToDateTime(StrDate);
+                TaStochart.Series[stoname].Points.AddXY(Date, HoldQuan);
+
+            }
+            
         }
+
 
 
 

@@ -122,7 +122,7 @@ namespace personremainer
                         //补仓
                         holdquan += quan;
                     }
-
+/*
                     if (DS.Tables[0].Rows[row][3].ToString().Substring(0, 2) == "买入")
                     {
                         //买入
@@ -142,7 +142,7 @@ namespace personremainer
                     {
                         //卖空 
                         holdquan = holdquan - quantity;
-                    }
+                    }*/
                 }
                 else
                 {
