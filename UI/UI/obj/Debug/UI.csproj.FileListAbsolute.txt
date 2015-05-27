@@ -1,0 +1,9 @@
+C:\Users\user\Desktop\UI\UI\bin\Debug\UI.exe.config
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.Form1.resources
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.Properties.Resources.resources
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\UI\UI\bin\Debug\UI.exe
+C:\Users\user\Desktop\UI\UI\bin\Debug\UI.pdb
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.exe
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.pdb
