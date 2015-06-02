@@ -7,3 +7,4 @@ C:\Users\user\Desktop\UI\UI\bin\Debug\UI.exe
 C:\Users\user\Desktop\UI\UI\bin\Debug\UI.pdb
 C:\Users\user\Desktop\UI\UI\obj\Debug\UI.exe
 C:\Users\user\Desktop\UI\UI\obj\Debug\UI.pdb
+C:\Users\user\Desktop\UI\UI\obj\Debug\UI.Form2.resources

@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\GetNetData\GetNetData\bin\Debug\GetNetData.dll
+C:\Users\user\Desktop\GetNetData\GetNetData\bin\Debug\GetNetData.pdb
+C:\Users\user\Desktop\GetNetData\GetNetData\obj\Debug\GetNetData.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\GetNetData\GetNetData\obj\Debug\GetNetData.dll
+C:\Users\user\Desktop\GetNetData\GetNetData\obj\Debug\GetNetData.pdb

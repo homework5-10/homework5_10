@@ -128,6 +128,7 @@ namespace GetNetData
             try
             {
                 CommUrl = BaseUrl;
+                Count = 0;
                 return true;
             }
             catch

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{44B613D4-65D4-4B6B-8153-9AFB7A747CB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetNetDataTest", "..\GetNetData\GetNetDataTest\GetNetDataTest.csproj", "{09CAC930-7714-46B2-8852-AA92764F8F04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetNetDataTest", "GetNetData\GetNetDataTest\GetNetDataTest.csproj", "{09CAC930-7714-46B2-8852-AA92764F8F04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
