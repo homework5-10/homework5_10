@@ -39,6 +39,7 @@ namespace UI
         {
             
             ST.SetCookie();
+            ST.ReSetUrl();
             string[] TempHold =new string[2];
             string head = "&";
             string space = "_";
@@ -196,11 +197,14 @@ namespace UI
                     DataRows += 12;
                 }
 
+                comboBox1.Items.Clear();
+                int PageUpper = 0;
                 if (row % 12 != 0)
                 {
-                    RowUpper++;
+                    PageUpper++;
                 }
-                for (int PaperNum = 1; PaperNum <= RowUpper; PaperNum++)
+                PageUpper += ST.GetCount() / 30;
+                for (int PaperNum = 1; PaperNum <= PageUpper; PaperNum++)
                 {
                     comboBox1.Items.Add(PaperNum.ToString());
                 }
@@ -297,6 +301,7 @@ namespace UI
         private void button1_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
             comboBox1.Items.Clear();
             comboBox1.Text = "";
             ST.ReSetUrl();
