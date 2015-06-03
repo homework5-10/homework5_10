@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\UI\UITestProject\bin\Debug\UITestProject.dll
+C:\Users\user\Desktop\UI\UITestProject\bin\Debug\UITestProject.pdb
+C:\Users\user\Desktop\UI\UITestProject\obj\Debug\UITestProject.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\UI\UITestProject\obj\Debug\UITestProject.dll
+C:\Users\user\Desktop\UI\UITestProject\obj\Debug\UITestProject.pdb

@@ -33,3 +33,4 @@ C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\bin\Debug\Microsoft.QualityTo
 C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\bin\Debug\UI.exe
 C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\bin\Debug\UI.pdb
 C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\bin\Debug\zh-Hans\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\bin\Debug\GetNetData.Fakes.fakesconfig

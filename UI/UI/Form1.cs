@@ -142,6 +142,7 @@ namespace UI
                 ST.SetUrl(TempHold);
                 AddColumn("roediluted", "净资产收益率(%)");
             }
+            page = null;
             ShowReslut(ST);
 
         }
@@ -305,6 +306,7 @@ namespace UI
             comboBox1.Items.Clear();
             comboBox1.Text = "";
             ST.ReSetUrl();
+            page = null;
             ReSetTextBox();
         }
 
