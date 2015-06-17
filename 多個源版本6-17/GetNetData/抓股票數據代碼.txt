@@ -1,0 +1,30 @@
+
+
+
+
+
+
+
+      StockNum = "sz300154";
+
+            string UrlList = "http://xueqiu.com/v4/stock/quote.json?code={0}";
+            string header = "xq_a_token=39d6304bf28af3d0e6424795e0d0b210c91568c6;";
+
+
+    StockNum = "sz300154";
+
+
+        public string GetStockData(string StockNum)
+        {
+            StockNum = "sz300154";
+            string UrlList = "http://xueqiu.com/v4/stock/quote.json?code={0}";
+
+            WebClient MyWebClient = new WebClient();
+            MyWebClient.Credentials = CredentialCache.DefaultCredentials;
+            string header = "xq_a_token=39d6304bf28af3d0e6424795e0d0b210c91568c6;";
+            MyWebClient.Headers.Add("Cookie", header);      
+            string Url = string.Format(UrlList, StockNum);
+            Byte[] PageData = MyWebClient.DownloadData(Url);
+            string PageString = Encoding.UTF8.GetString(PageData);
+            return PageString;
+        }

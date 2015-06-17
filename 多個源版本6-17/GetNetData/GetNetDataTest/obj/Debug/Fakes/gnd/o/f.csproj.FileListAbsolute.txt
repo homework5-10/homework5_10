@@ -1,0 +1,10 @@
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\GetNetData.Fakes.xml
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\GetNetData.Fakes.dll
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\GetNetData.Fakes.pdb
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\GetNetData.dll
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\Microsoft.QualityTools.Testing.Fakes.dll
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\GetNetData.pdb
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\b\zh-Hans\Microsoft.QualityTools.Testing.Fakes.resources.dll
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\o\f.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\o\GetNetData.Fakes.dll
+C:\Users\user\Desktop\UI\GetNetData\GetNetDataTest\obj\Debug\Fakes\gnd\o\GetNetData.Fakes.pdb
