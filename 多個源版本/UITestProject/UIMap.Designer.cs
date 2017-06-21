@@ -7,7 +7,8 @@
 //      并将丢失这些更改。
 //  </auto-generated>
 // ------------------------------------------------------------------------------
-
+//testing
+//測試中文
 namespace UITestProject
 {
     using System;

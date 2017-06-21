@@ -28,7 +28,8 @@ namespace UITestProject
     [GeneratedCode("编码的 UI 测试生成器", "11.0.60315.1")]
     public partial class UIMap
     {
-        
+        //testing pull from droidedit
+        // 測試中文字
         /// <summary>
         /// TestNoCondtional - 使用“TestNoCondtionalParams”将参数传递到此方法中。
         /// </summary>
